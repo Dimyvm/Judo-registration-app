@@ -1,0 +1,2 @@
+
+String appTitle = 'JudoRegistration registratie';
