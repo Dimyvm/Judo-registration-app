@@ -1,3 +1,4 @@
+import 'package:JudoRegistration/views/screensaver_page.dart';
 import 'package:flutter/material.dart';
 import 'package:JudoRegistration/constants.dart';
 import 'package:JudoRegistration/routes.dart';
@@ -16,13 +17,30 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: appTitle,
       debugShowCheckedModeBanner: false,
-      
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        colorScheme: const ColorScheme(
+          brightness: Brightness.light,
+          primary: Colors.white,
+          onPrimary: Color(0xff6A638F),
+          secondary: Colors.grey,
+          onSecondary: Colors.grey,
+          background: Colors.grey,
+          onBackground: Colors.grey,
+          surface: Colors.grey,
+          onSurface: Colors.grey,
+          error: Colors.grey,
+          onError: Colors.grey,
+        ),
+
+        // appBarTheme: const AppBarTheme(
+        //   color: primaryColor,
+
+        // ),
       ),
       routes: {
         Routes.pageHome: (context) => const HomePage(),
         Routes.pageSettings: (context) => const SettingsPage(),
+        Routes.screensaver: (context) => const ScreensaverPage(),
       },
     );
   }

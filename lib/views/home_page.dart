@@ -1,4 +1,3 @@
-
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -11,32 +10,46 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
-    final double hight = MediaQuery.of(context).size.height - AppBar().preferredSize.height - MediaQuery.of(context).padding.top;
-    
+    final double hight = MediaQuery.of(context).size.height -
+        AppBar().preferredSize.height -
+        MediaQuery.of(context).padding.top;
+
     DateTime now = DateTime.now();
-    double timeline = (hight / 1440) * (now.hour*60 + now.minute);
+    double timeline = (hight / 1440) * (now.hour * 60 + now.minute);
+    String month = months[now.month - 1];
 
     Timer? toScreensaver;
 
-    navigateToScreenSaver(){
+    navigateToScreenSaver() {
       toScreensaver!.cancel();
-      Navigator.pushNamed(context, Routes.pageSettings);
+      Navigator.pushNamed(context, Routes.screensaver);
     }
 
-    toScreensaver = Timer.periodic(const Duration(minutes: 1), (_) =>  navigateToScreenSaver());
-    
-
-    
-    
+    toScreensaver = Timer.periodic(
+        const Duration(minutes: 1), (_) => navigateToScreenSaver());
 
     return Scaffold(
-
       appBar: AppBar(
-        
-        title: Text(appTitle),
+        // backgroundColor: Colors.white,
+
+        leading: IconButton(
+          icon: const Icon(Icons.menu, size: 36),
+          onPressed: () {},
+        ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Text('$month ${now.day}', style: const TextStyle(fontSize: 36.0, ),),
+            Text('${now.year}', style: const TextStyle(fontSize: 36.0,),),
+          ],
+        ),
         centerTitle: true,
         actions: [
-          IconButton(onPressed: (){Navigator.pushNamed(context, Routes.pageSettings);}, icon: const Icon(Icons.settings))
+          IconButton(
+              onPressed: () {
+                Navigator.pushNamed(context, Routes.pageSettings);
+              },
+              icon: const Icon(Icons.settings, size: 36, ))
         ],
       ),
       body: Center(
@@ -60,13 +73,13 @@ class HomePage extends StatelessWidget {
                 color: Colors.blue,
               ),
             ),
-             Positioned(
+            Positioned(
               left: 1,
-              top: timeline ,
+              top: timeline,
               child: Container(
-              width: width,
-              height: 2.0,
-              color: Colors.redAccent,
+                width: width,
+                height: 2.0,
+                color: Colors.redAccent,
               ),
             ),
           ],
