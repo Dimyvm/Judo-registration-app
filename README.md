@@ -1,16 +1,10 @@
 # JudoRegistration
 
-A new Flutter project.
+Our application is **open source**, meaning you can inspect every little detail of the code! <br>
+We believe in **transparency**, we do not collect any personal data with the exception of your login data. <br>We hope you poke around and like what you see!
 
-## Getting Started
+Feel free to send us some suggestions.
 
-This project is a starting point for a Flutter application.
+## Design
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Design](README/Design.png)
