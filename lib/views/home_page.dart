@@ -70,108 +70,100 @@ class HomePage extends StatelessWidget {
       ),
       body: Center(
         child: Stack(
+          clipBehavior: Clip.none,
           children: [
-            //Background layer
-            Row(
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: Container(
+            // moving Background layer
+            Positioned(
+              bottom: timeline - height ,  // moving background 
+              child: Row(
+                children: [
+                  Container(
                     color: Colors.green,
-                    width: width,
-                    height: double.infinity,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    width: width / 6,
+                    height: height *3,
+                    child: ListView.builder(
+                      itemCount: 24,
+                      itemBuilder: (BuildContext context, int index) {
+                        return 
+                        Container(
+                          width: double.infinity,
+                          // height: height/24,
+                          height: height/8,
+                          color: Color(Random().nextInt(0xffffffff)),
+                          child: Center(child: Text('${index+1}')),
+                        );
+                      },
+                    ),
+                    // child: Column(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    //   children: [
+                        
+                    //     Container(
+                    //       width: double.infinity,
+                    //       height: 15,
+                    //       child: CustomPaint(
+                    //         foregroundPainter: CustomLinePainter(
+                    //             color: Colors.amber, width: 0.25),
+                    //       ),
+                    //     ),
+                    //     Container(
+                    //       width: double.infinity,
+                    //       height: 15,
+                    //       child: CustomPaint(
+                    //         foregroundPainter: CustomLinePainter(
+                    //             color: Colors.red, width: 0.5),
+                    //       ),
+                    //     ),
+                    //     Container(
+                    //       width: double.infinity,
+                    //       height: 15,
+                    //       child: CustomPaint(
+                    //         foregroundPainter: CustomLinePainter(
+                    //             color: Colors.amber, width: 0.25),
+                    //       ),
+                    //     ),
+                    //     Container(
+                    //       height: 15,
+                    //       child: Center(child: Text('01:00'))),
+                    //   ],
+                    // ),
+                  ),
+                  Container(
+                    color: Colors.blue,
+                    width: (width / 6) * 5,
+                    height: height*3,
+                    child: Stack(
                       children: [
-
-                        Container(
-                          width: double.infinity,
-                          height: 15,
-                          child: CustomPaint(
-                            foregroundPainter: CustomLinePainter(
-                                color: Colors.amber, width: 0.25),
+                        Positioned(
+                          left: 5,
+                          top: 10,
+                          child: Container(
+                            width: 100,
+                            height: 100,
+                            color: Colors.red,
                           ),
                         ),
-                        Container(
-                          width: double.infinity,
-                          height: 15,
-                          child: CustomPaint(
-                            foregroundPainter: CustomLinePainter(
-                                color: Colors.red, width: 0.5),
+                        Positioned(
+                          left: 50,
+                          top: 30,
+                          child: Container(
+                            width: 100,
+                            height: 100,
+                            color: Colors.blue,
                           ),
                         ),
-                        Container(
-                          width: double.infinity,
-                          height: 15,
-                          child: CustomPaint(
-                            foregroundPainter: CustomLinePainter(
-                                color: Colors.amber, width: 0.25),
-                          ),
-                        ),
-                        Container(
-                          height: 15,
-                          child: Center(child: Text('01:00'))),
                       ],
                     ),
                   ),
-                ),
-                Expanded(
-                  flex: 5,
-                  child: Container(
-                    color: Colors.blue,
-                    width: double.infinity,
-                    height: double.infinity,
-                  ),
-                ),
-              ],
-            ),
-            //trainingslayer
-            Row(
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: Container(
-                    color: Colors.transparent,
-                    width: double.infinity,
-                    height: double.infinity,
-                  ),
-                ),
-                Expanded(
-                  flex: 5,
-                  child: Container(
-                      color: Colors.transparent,
-                      width: double.infinity,
-                      height: double.infinity,
-                      child: Stack(
-                        children: [
-                          Positioned(
-                            left: 5,
-                            top: 10,
-                            child: Container(
-                              width: 100,
-                              height: 100,
-                              color: Colors.red,
-                            ),
-                          ),
-                          Positioned(
-                            left: 50,
-                            top: 30,
-                            child: Container(
-                              width: 100,
-                              height: 100,
-                              color: Colors.blue,
-                            ),
-                          ),
-                        ],
-                      )),
-                ),
-              ],
+                ],
+              ),
             ),
             //timeline
 
             Positioned(
               left: 1,
-              top: timeline,
+              // top: timeline,   // moving timeline
+              top: height/2,   // fixed timeline
               child: Container(
                 width: width,
                 height: 2.0,
