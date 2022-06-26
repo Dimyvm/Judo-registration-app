@@ -1,8 +1,11 @@
 import 'dart:async';
-
+import 'dart:math';
 import 'package:flutter/material.dart';
+
 import 'package:JudoRegistration/constants.dart';
 import 'package:JudoRegistration/routes.dart';
+
+import '../widgets/custom_line.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -10,12 +13,12 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
-    final double hight = MediaQuery.of(context).size.height -
+    final double height = MediaQuery.of(context).size.height -
         AppBar().preferredSize.height -
         MediaQuery.of(context).padding.top;
 
     DateTime now = DateTime.now();
-    double timeline = (hight / 1440) * (now.hour * 60 + now.minute);
+    double timeline = (height / 1440) * (now.hour * 60 + now.minute);
     String month = months[now.month - 1];
 
     Timer? toScreensaver;
@@ -39,8 +42,18 @@ class HomePage extends StatelessWidget {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Text('$month ${now.day}', style: const TextStyle(fontSize: 36.0, ),),
-            Text('${now.year}', style: const TextStyle(fontSize: 36.0,),),
+            Text(
+              '$month ${now.day}',
+              style: const TextStyle(
+                fontSize: 36.0,
+              ),
+            ),
+            Text(
+              '${now.year}',
+              style: const TextStyle(
+                fontSize: 36.0,
+              ),
+            ),
           ],
         ),
         centerTitle: true,
@@ -49,30 +62,113 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(context, Routes.pageSettings);
               },
-              icon: const Icon(Icons.settings, size: 36, ))
+              icon: const Icon(
+                Icons.settings,
+                size: 36,
+              ))
         ],
       ),
       body: Center(
         child: Stack(
           children: [
-            Positioned(
-              left: 5,
-              top: 10,
-              child: Container(
-                width: 100,
-                height: 100,
-                color: Colors.red,
-              ),
+            //Background layer
+            Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    color: Colors.green,
+                    width: width,
+                    height: double.infinity,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+
+                        Container(
+                          width: double.infinity,
+                          height: 15,
+                          child: CustomPaint(
+                            foregroundPainter: CustomLinePainter(
+                                color: Colors.amber, width: 0.25),
+                          ),
+                        ),
+                        Container(
+                          width: double.infinity,
+                          height: 15,
+                          child: CustomPaint(
+                            foregroundPainter: CustomLinePainter(
+                                color: Colors.red, width: 0.5),
+                          ),
+                        ),
+                        Container(
+                          width: double.infinity,
+                          height: 15,
+                          child: CustomPaint(
+                            foregroundPainter: CustomLinePainter(
+                                color: Colors.amber, width: 0.25),
+                          ),
+                        ),
+                        Container(
+                          height: 15,
+                          child: Center(child: Text('01:00'))),
+                      ],
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 5,
+                  child: Container(
+                    color: Colors.blue,
+                    width: double.infinity,
+                    height: double.infinity,
+                  ),
+                ),
+              ],
             ),
-            Positioned(
-              left: 50,
-              top: 30,
-              child: Container(
-                width: 100,
-                height: 100,
-                color: Colors.blue,
-              ),
+            //trainingslayer
+            Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    color: Colors.transparent,
+                    width: double.infinity,
+                    height: double.infinity,
+                  ),
+                ),
+                Expanded(
+                  flex: 5,
+                  child: Container(
+                      color: Colors.transparent,
+                      width: double.infinity,
+                      height: double.infinity,
+                      child: Stack(
+                        children: [
+                          Positioned(
+                            left: 5,
+                            top: 10,
+                            child: Container(
+                              width: 100,
+                              height: 100,
+                              color: Colors.red,
+                            ),
+                          ),
+                          Positioned(
+                            left: 50,
+                            top: 30,
+                            child: Container(
+                              width: 100,
+                              height: 100,
+                              color: Colors.blue,
+                            ),
+                          ),
+                        ],
+                      )),
+                ),
+              ],
             ),
+            //timeline
+
             Positioned(
               left: 1,
               top: timeline,
