@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:JudoRegistration/constants.dart';
 import 'package:JudoRegistration/routes.dart';
+import 'package:intl/intl.dart';
 
 import '../widgets/custom_line.dart';
 
@@ -19,9 +20,12 @@ class HomePage extends StatelessWidget {
 
     DateTime now = DateTime.now();
     double timeline = (height / 1440) * (now.hour * 60 + now.minute);
+
     String month = months[now.month - 1];
 
     Timer? toScreensaver;
+
+    DateFormat('hh:mm').format(DateTime(2020, 1, 1, 1, 10));
 
     navigateToScreenSaver() {
       toScreensaver!.cancel();
@@ -74,64 +78,72 @@ class HomePage extends StatelessWidget {
           children: [
             // moving Background layer
             Positioned(
-              bottom: timeline - height ,  // moving background 
+              top: -(timeline * 3 - (height / 2)), // moving background
               child: Row(
                 children: [
                   Container(
-                    color: Colors.green,
+                    color: Colors.white,
                     width: width / 6,
-                    height: height *3,
+                    height: height * 3,
                     child: ListView.builder(
                       itemCount: 24,
                       itemBuilder: (BuildContext context, int index) {
-                        return 
-                        Container(
-                          width: double.infinity,
-                          // height: height/24,
-                          height: height/8,
-                          color: Color(Random().nextInt(0xffffffff)),
-                          child: Center(child: Text('${index+1}')),
+                        return Stack(
+                          children: [
+                            Container(
+                              width: double.infinity,
+                              // height: height/24,
+                              height: height / 8,
+                              color: Colors.transparent,
+                              child: Column(
+                                mainAxisAlignment:MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  SizedBox(
+                                    width: double.infinity,
+                                    height: 15,
+                                    child: CustomPaint(
+                                      foregroundPainter: CustomLinePainter(
+                                          color: const Color(0xff8B8B8D),
+                                          width: 0.25),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: double.infinity,
+                                    height: 15,
+                                    child: CustomPaint(
+                                      foregroundPainter: CustomLinePainter(
+                                          color: const Color(0xff8B8B8D),
+                                          width: 0.5),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: double.infinity,
+                                    height: 15,
+                                    child: CustomPaint(
+                                      foregroundPainter: CustomLinePainter(
+                                          color: const Color(0xff8B8B8D),
+                                          width: 0.25),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Positioned(
+                              bottom: -7.5,
+                              child: Center(
+                                child: Text(DateFormat('Hm').format(
+                                    DateTime(2020, 1, 1, index + 1, 00))),
+                              ),
+                            ),
+                          ],
                         );
                       },
                     ),
-                    // child: Column(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    //   children: [
-                        
-                    //     Container(
-                    //       width: double.infinity,
-                    //       height: 15,
-                    //       child: CustomPaint(
-                    //         foregroundPainter: CustomLinePainter(
-                    //             color: Colors.amber, width: 0.25),
-                    //       ),
-                    //     ),
-                    //     Container(
-                    //       width: double.infinity,
-                    //       height: 15,
-                    //       child: CustomPaint(
-                    //         foregroundPainter: CustomLinePainter(
-                    //             color: Colors.red, width: 0.5),
-                    //       ),
-                    //     ),
-                    //     Container(
-                    //       width: double.infinity,
-                    //       height: 15,
-                    //       child: CustomPaint(
-                    //         foregroundPainter: CustomLinePainter(
-                    //             color: Colors.amber, width: 0.25),
-                    //       ),
-                    //     ),
-                    //     Container(
-                    //       height: 15,
-                    //       child: Center(child: Text('01:00'))),
-                    //   ],
-                    // ),
                   ),
                   Container(
                     color: Colors.blue,
                     width: (width / 6) * 5,
-                    height: height*3,
+                    height: height * 3,
                     child: Stack(
                       children: [
                         Positioned(
@@ -163,7 +175,7 @@ class HomePage extends StatelessWidget {
             Positioned(
               left: 1,
               // top: timeline,   // moving timeline
-              top: height/2,   // fixed timeline
+              top: height / 2, // fixed timeline
               child: Container(
                 width: width,
                 height: 2.0,
