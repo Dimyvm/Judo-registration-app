@@ -1,12 +1,12 @@
 import 'dart:async';
-import 'dart:math';
+import 'package:JudoRegistration/widgets/event_tile.dart';
 import 'package:flutter/material.dart';
 
 import 'package:JudoRegistration/constants.dart';
 import 'package:JudoRegistration/routes.dart';
 import 'package:intl/intl.dart';
 
-import '../widgets/custom_line.dart';
+import '../widgets/time_line_stroke.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -76,92 +76,45 @@ class HomePage extends StatelessWidget {
         child: Stack(
           clipBehavior: Clip.none,
           children: [
-            // moving Background layer
+            // moving Background layer current day
             Positioned(
               top: -(timeline * 3 - (height / 2)), // moving background
               child: Row(
                 children: [
+                  //Timelinestroke
+                  const TimeLineStroke(),
+
+                  //training overview
+
                   Container(
                     color: Colors.white,
-                    width: width / 6,
-                    height: height * 3,
-                    child: ListView.builder(
-                      itemCount: 24,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Stack(
-                          children: [
-                            Container(
-                              width: double.infinity,
-                              // height: height/24,
-                              height: height / 8,
-                              color: Colors.transparent,
-                              child: Column(
-                                mainAxisAlignment:MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  SizedBox(
-                                    width: double.infinity,
-                                    height: 15,
-                                    child: CustomPaint(
-                                      foregroundPainter: CustomLinePainter(
-                                          color: const Color(0xff8B8B8D),
-                                          width: 0.25),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: double.infinity,
-                                    height: 15,
-                                    child: CustomPaint(
-                                      foregroundPainter: CustomLinePainter(
-                                          color: const Color(0xff8B8B8D),
-                                          width: 0.5),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: double.infinity,
-                                    height: 15,
-                                    child: CustomPaint(
-                                      foregroundPainter: CustomLinePainter(
-                                          color: const Color(0xff8B8B8D),
-                                          width: 0.25),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Positioned(
-                              bottom: -7.5,
-                              child: Center(
-                                child: Text(DateFormat('Hm').format(
-                                    DateTime(2020, 1, 1, index + 1, 00))),
-                              ),
-                            ),
-                          ],
-                        );
-                      },
-                    ),
-                  ),
-                  Container(
-                    color: Colors.blue,
                     width: (width / 6) * 5,
                     height: height * 3,
                     child: Stack(
+                      fit: StackFit.loose,
                       children: [
+                        //events
+                        EventTile(
+                            height: height,
+                            color: Colors.purple,
+                            timeline: timeline,
+                            width: width,
+                            start: DateTime(2022, 6, 28, 21, 30),
+                            end: DateTime(2022, 6, 28, 21, 30),
+                            title: "title",
+                            comment: "comment"),
                         Positioned(
-                          left: 5,
-                          top: 10,
+                          left: 0,
+                          top: timeline * 3 - 50,
                           child: Container(
-                            width: 100,
+                            width: (width / 6) * 5,
                             height: 100,
-                            color: Colors.red,
-                          ),
-                        ),
-                        Positioned(
-                          left: 50,
-                          top: 30,
-                          child: Container(
-                            width: 100,
-                            height: 100,
-                            color: Colors.blue,
+                            decoration: BoxDecoration(
+                              color: Colors.green[100],
+                              border: const Border(
+                                left: BorderSide(color: Colors.green, width: 7),
+                              ),
+                            ),
                           ),
                         ),
                       ],
@@ -170,15 +123,16 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-            //timeline
+            // moving Background layer next day
 
+            //timeline
             Positioned(
               left: 1,
               // top: timeline,   // moving timeline
               top: height / 2, // fixed timeline
               child: Container(
                 width: width,
-                height: 2.0,
+                height: 3.0,
                 color: Colors.redAccent,
               ),
             ),

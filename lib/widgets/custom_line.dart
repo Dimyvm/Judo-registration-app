@@ -1,12 +1,10 @@
-
-
 import 'package:flutter/material.dart';
-  
+
 class CustomLinePainter extends CustomPainter {
-  
   final Color color;
+
   /// the [width] must between 0 and 1.
-  /// 
+  ///
   /// 0.5 = 50 % of the total with.
   final double width;
 
@@ -18,14 +16,12 @@ class CustomLinePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint();
-    paint.strokeWidth = 5;
+    paint.strokeWidth = 3;
     paint.strokeCap = StrokeCap.round;
     paint.color = color;
 
-    canvas.drawLine(
-      Offset(size.width * 0.5/10, size.height * 1/ 2), 
-      Offset(size.width * width, size.height * 1/ 2), 
-      paint);
+    canvas.drawLine(Offset(size.width * 0.5 / 10, size.height * 1 / 2),
+        Offset(size.width * width, size.height * 1 / 2), paint);
   }
 
   @override
@@ -33,5 +29,4 @@ class CustomLinePainter extends CustomPainter {
 
   @override
   bool shouldRebuildSemantics(CustomLinePainter oldDelegate) => false;
-
 }
