@@ -1,0 +1,42 @@
+import 'package:flutter/material.dart';
+
+import 'time_line_stroke.dart';
+
+class DayView extends StatelessWidget {
+  final double heightMinAppbar;
+  final double width;
+  final double scale;
+  final double timeline;
+  final List<Widget> events;
+  const DayView(
+      {Key? key,
+      required this.heightMinAppbar,
+      required this.width,
+      required this.scale,
+      required this.timeline,
+      this.events = const []})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      top: -(timeline * scale - (heightMinAppbar / 2)), // moving background
+      child: Row(
+        children: [
+          //Timelinestroke
+          TimeLineStroke(heightMinAppbar: heightMinAppbar),
+          //events overview
+          Container(
+            color: Colors.white,
+            width: (width / 6) * 5,
+            height: heightMinAppbar * scale,
+            child: Stack(
+              fit: StackFit.loose,
+              children: events,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

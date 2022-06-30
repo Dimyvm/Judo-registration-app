@@ -6,6 +6,7 @@ import 'package:JudoRegistration/constants.dart';
 import 'package:JudoRegistration/routes.dart';
 import 'package:intl/intl.dart';
 
+import '../widgets/day_view.dart';
 import '../widgets/time_line_stroke.dart';
 
 class HomePage extends StatelessWidget {
@@ -14,14 +15,16 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
-    final double height = MediaQuery.of(context).size.height -
+    final double heightMinAppbar = MediaQuery.of(context).size.height -
         AppBar().preferredSize.height -
         MediaQuery.of(context).padding.top;
+    debugPrint('height homepage: $heightMinAppbar');
 
     DateTime now = DateTime.now();
-    double timeline = (height / 1440) * (now.hour * 60 + now.minute);
+    double timeline = (heightMinAppbar / 1440) * (now.hour * 60 + now.minute);
 
     String month = months[now.month - 1];
+    double scale = 3;
 
     Timer? toScreensaver;
 
@@ -35,6 +38,31 @@ class HomePage extends StatelessWidget {
     toScreensaver = Timer.periodic(
         const Duration(minutes: 1), (_) => navigateToScreenSaver());
 
+    List<Widget> events = [
+      EventTile(
+          height: heightMinAppbar,
+          color: Colors.purple,
+          timeline: timeline,
+          width: width,
+          start: DateTime(2022, 6, 28, 21, 30),
+          end: DateTime(2022, 6, 28, 21, 30),
+          title: "title",
+          comment: "comment"),
+      Positioned(
+        left: 0,
+        top: timeline * 3 - 50,
+        child: Container(
+          width: (width / 6) * 5,
+          height: 100,
+          decoration: BoxDecoration(
+            color: Colors.green[100],
+            border: const Border(
+              left: BorderSide(color: Colors.green, width: 7),
+            ),
+          ),
+        ),
+      ),
+    ];
     return Scaffold(
       appBar: AppBar(
         // backgroundColor: Colors.white,
@@ -76,26 +104,37 @@ class HomePage extends StatelessWidget {
         child: Stack(
           clipBehavior: Clip.none,
           children: [
-            // moving Background layer current day
+            //moving Background layer - previous day
+
+            // moving Background layer - current day
+            DayView(
+              heightMinAppbar: heightMinAppbar,
+              width: width,
+              scale: scale,
+              timeline: timeline,
+              events: events,
+            ),
+
+            // moving Background layer - next day
             Positioned(
-              top: -(timeline * 3 - (height / 2)), // moving background
+              top: -(timeline * 3 - (heightMinAppbar / 2)) +
+                  heightMinAppbar * 3, // moving background
               child: Row(
                 children: [
                   //Timelinestroke
-                  const TimeLineStroke(),
+                  TimeLineStroke(heightMinAppbar: heightMinAppbar),
 
                   //training overview
-
                   Container(
                     color: Colors.white,
                     width: (width / 6) * 5,
-                    height: height * 3,
+                    height: heightMinAppbar * 3,
                     child: Stack(
                       fit: StackFit.loose,
                       children: [
                         //events
                         EventTile(
-                            height: height,
+                            height: heightMinAppbar,
                             color: Colors.purple,
                             timeline: timeline,
                             width: width,
@@ -123,13 +162,12 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-            // moving Background layer next day
 
             //timeline
             Positioned(
               left: 1,
               // top: timeline,   // moving timeline
-              top: height / 2, // fixed timeline
+              top: heightMinAppbar / 2, // fixed timeline
               child: Container(
                 width: width,
                 height: 3.0,

@@ -3,19 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class TimeLineStroke extends StatelessWidget {
-  const TimeLineStroke({Key? key}) : super(key: key);
+  final double heightMinAppbar;
+   const TimeLineStroke({Key? key, required this.heightMinAppbar}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
-    final double height = MediaQuery.of(context).size.height -
-        AppBar().preferredSize.height -
-        MediaQuery.of(context).padding.top;
+    // final double heightMinAppbar = MediaQuery.of(context).size.height -
+    //     AppBar().preferredSize.height -
+    //     MediaQuery.of(context).padding.top;
+
+     debugPrint('height timelinestroke: $heightMinAppbar');
 
     return Container(
                     color: Colors.transparent,
                     width: width / 6,
-                    height: height * 3,
+                    height: heightMinAppbar * 3,
                     child: ListView.builder(
                       itemCount: 24,
                       itemBuilder: (BuildContext context, int index) {
@@ -25,7 +28,7 @@ class TimeLineStroke extends StatelessWidget {
                             Container(
                               padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
                               width: double.infinity,
-                              height: height / 8,
+                              height: heightMinAppbar / 8,
                               color: Colors.transparent,
                               child: Column(
                                 mainAxisAlignment:
