@@ -44,8 +44,8 @@ class HomePage extends StatelessWidget {
           color: Colors.purple,
           timeline: timeline,
           width: width,
-          start: DateTime(2022, 6, 28, 21, 30),
-          end: DateTime(2022, 6, 28, 21, 30),
+          start: DateTime(2022, 6, 28, 20, 45),
+          end: DateTime(2022, 6, 28, 22, 30),
           title: "title",
           comment: "comment"),
       Positioned(
@@ -105,9 +105,19 @@ class HomePage extends StatelessWidget {
           clipBehavior: Clip.none,
           children: [
             //moving Background layer - previous day
+            DayView(
+              day: -1,
+              heightMinAppbar: heightMinAppbar,
+              width: width,
+              scale: scale,
+              timeline: timeline,
+              
+            ),
+           
 
             // moving Background layer - current day
             DayView(
+              day: 1,
               heightMinAppbar: heightMinAppbar,
               width: width,
               scale: scale,
@@ -116,52 +126,59 @@ class HomePage extends StatelessWidget {
             ),
 
             // moving Background layer - next day
-            Positioned(
-              top: -(timeline * 3 - (heightMinAppbar / 2)) +
-                  heightMinAppbar * 3, // moving background
-              child: Row(
-                children: [
-                  //Timelinestroke
-                  TimeLineStroke(heightMinAppbar: heightMinAppbar),
-
-                  //training overview
-                  Container(
-                    color: Colors.white,
-                    width: (width / 6) * 5,
-                    height: heightMinAppbar * 3,
-                    child: Stack(
-                      fit: StackFit.loose,
-                      children: [
-                        //events
-                        EventTile(
-                            height: heightMinAppbar,
-                            color: Colors.purple,
-                            timeline: timeline,
-                            width: width,
-                            start: DateTime(2022, 6, 28, 21, 30),
-                            end: DateTime(2022, 6, 28, 21, 30),
-                            title: "title",
-                            comment: "comment"),
-                        Positioned(
-                          left: 0,
-                          top: timeline * 3 - 50,
-                          child: Container(
-                            width: (width / 6) * 5,
-                            height: 100,
-                            decoration: BoxDecoration(
-                              color: Colors.green[100],
-                              border: const Border(
-                                left: BorderSide(color: Colors.green, width: 7),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+            DayView(
+              heightMinAppbar: heightMinAppbar,
+              width: width,
+              scale: scale,
+              timeline: timeline,
+              events: events,
             ),
+            // Positioned(
+            //   top: -(timeline * 3 - (heightMinAppbar / 2)) +
+            //       heightMinAppbar * 3, // moving background
+            //   child: Row(
+            //     children: [
+            //       //Timelinestroke
+            //       TimeLineStroke(heightMinAppbar: heightMinAppbar),
+
+            //       //training overview
+            //       Container(
+            //         color: Colors.white,
+            //         width: (width / 6) * 5,
+            //         height: heightMinAppbar * 3,
+            //         child: Stack(
+            //           fit: StackFit.loose,
+            //           children: [
+            //             //events
+            //             EventTile(
+            //                 height: heightMinAppbar,
+            //                 color: Colors.purple,
+            //                 timeline: timeline,
+            //                 width: width,
+            //                 start: DateTime(2022, 6, 28, 21, 30),
+            //                 end: DateTime(2022, 6, 28, 21, 30),
+            //                 title: "title",
+            //                 comment: "comment"),
+            //             Positioned(
+            //               left: 0,
+            //               top: timeline * 3 - 50,
+            //               child: Container(
+            //                 width: (width / 6) * 5,
+            //                 height: 100,
+            //                 decoration: BoxDecoration(
+            //                   color: Colors.green[100],
+            //                   border: const Border(
+            //                     left: BorderSide(color: Colors.green, width: 7),
+            //                   ),
+            //                 ),
+            //               ),
+            //             ),
+            //           ],
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
 
             //timeline
             Positioned(

@@ -27,7 +27,7 @@ class EventTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned(
       left: 0,
-      top: ((height/1440) * (start.hour * 60) + start.minute) * 3,
+      top: ((height/1440) * (start.hour * 60) + start.minute) *3 -50,
       child: Container(
         width: (width / 6) * 5,
         height: 100,
