@@ -28,7 +28,8 @@ class EventLineStroke extends StatelessWidget {
               start: DateTime(2022, 6, 28, 21, 30),
               end: DateTime(2022, 6, 28, 21, 30),
               title: "title",
-              comment: "comment"),
+              comment: "comment",
+              scale: 3,),
           Positioned(
             left: 0,
             top: timeline * 3 - 300,

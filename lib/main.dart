@@ -1,3 +1,4 @@
+import 'package:JudoRegistration/views/registration_page.dart';
 import 'package:JudoRegistration/views/screensaver_page.dart';
 import 'package:flutter/material.dart';
 import 'package:JudoRegistration/constants.dart';
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
         Routes.pageHome: (context) => const HomePage(),
         Routes.pageSettings: (context) => const SettingsPage(),
         Routes.screensaver: (context) => const ScreensaverPage(),
+        Routes.registration: ((context) => const RegistrationPage()),
       },
     );
   }

@@ -36,23 +36,17 @@ class DayView extends StatelessWidget {
       return null;
   }
 
-
-
     return Positioned(
 
       top: getPosition(),
-     
-    
-      // -(timeline * scale - (heightMinAppbar / 2)), // moving background
 
-       
       child: Row(
         children: [
           //Timelinestroke
           TimeLineStroke(heightMinAppbar: heightMinAppbar),
           //events overview
           Container(
-            color: Colors.white,
+            color: day == 0 ? Colors.white : Colors.grey[100],
             width: (width / 6) * 5,
             height: heightMinAppbar * scale,
             child: Stack(
