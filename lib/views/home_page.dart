@@ -7,17 +7,16 @@ import 'package:JudoRegistration/routes.dart';
 import 'package:intl/intl.dart';
 
 import '../widgets/day_view.dart';
-import '../widgets/time_line_stroke.dart';
 
 class HomePage extends StatelessWidget {
+
+  ///Homeview
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
-    final double heightMinAppbar = MediaQuery.of(context).size.height -
-        AppBar().preferredSize.height -
-        MediaQuery.of(context).padding.top;
+    final double heightMinAppbar = (MediaQuery.of(context).size.height - AppBar().preferredSize.height - MediaQuery.of(context).padding.top);
     debugPrint('height homepage: $heightMinAppbar');
 
     DateTime now = DateTime.now();
@@ -30,14 +29,19 @@ class HomePage extends StatelessWidget {
 
     DateFormat('hh:mm').format(DateTime(2020, 1, 1, 1, 10));
 
-    navigateToScreenSaver() {
+    cancelTimer(){
       toScreensaver!.cancel();
+    }
+
+    navigateToScreenSaver() {
+      cancelTimer();
       Navigator.pushNamed(context, Routes.screensaver);
     }
 
     toScreensaver = Timer.periodic(
         const Duration(minutes: 1), (_) => navigateToScreenSaver());
 
+    //List of events / trainings
     List<Widget> events = [
       EventTile(
           height: heightMinAppbar,
@@ -46,24 +50,24 @@ class HomePage extends StatelessWidget {
           width: width,
           start: DateTime(2022, 6, 28, 20, 45),
           end: DateTime(2022, 6, 28, 21, 45),
-          title: "title",
-          comment: "comment",
-          scale: 3,),
+          title: "U8",
+          comment: "training",
+          scale: 3,
+          callback: cancelTimer,),
       EventTile(
           height: heightMinAppbar,
           color: Colors.orange,
           timeline: timeline,
           width: width,
-          start: DateTime(2022, 6, 28, 8, 45),
-          end: DateTime(2022, 6, 28, 10, 45),
-          title: "title",
-          comment: "comment",
-          scale: 3,),
+          start: DateTime(2022, 6, 28, 19, 45),
+          end: DateTime(2022, 6, 28, 20, 30),
+          title: "U12",
+          comment: "training",
+          scale: 3,
+          callback: cancelTimer,),
     ];
     return Scaffold(
       appBar: AppBar(
-        // backgroundColor: Colors.white,
-
         leading: IconButton(
           icon: const Icon(Icons.menu, size: 36),
           onPressed: () {},
@@ -99,6 +103,7 @@ class HomePage extends StatelessWidget {
       ),
       body: Center(
         child: Stack(
+          
           clipBehavior: Clip.none,
           children: [
             //moving Background layer - previous day

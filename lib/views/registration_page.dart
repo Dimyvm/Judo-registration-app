@@ -17,13 +17,17 @@ class RegistrationPage extends StatelessWidget {
             return Card(
               elevation: 6,
               margin: const EdgeInsets.all(10),
-              child: ListTile(
-                leading: CircleAvatar(
-                  backgroundColor: Colors.purple[100],
-                  child: const Icon(Icons.person),
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: ListTile(
+                  leading: CircleAvatar(
+                    radius: 30,
+                    backgroundColor: Colors.purple[100],
+                    child: const Icon(Icons.person, size: 32,),
+                  ),
+                  title: const Text('Dimitry Van Mulders', style: TextStyle(fontSize: 24),),
+                  trailing: const Icon(Icons.start_outlined),
                 ),
-                title: const Text('Dimitry Van Mulders'),
-                trailing: const Icon(Icons.start_outlined),
               ),
             );
           },

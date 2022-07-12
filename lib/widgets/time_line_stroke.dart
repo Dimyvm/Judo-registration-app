@@ -9,22 +9,18 @@ class TimeLineStroke extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
-    // final double heightMinAppbar = MediaQuery.of(context).size.height -
-    //     AppBar().preferredSize.height -
-    //     MediaQuery.of(context).padding.top;
-
-     debugPrint('height timelinestroke: $heightMinAppbar');
 
     return Container(
                     color: Colors.transparent,
                     width: width / 6,
                     height: heightMinAppbar * 3,
                     child: ListView.builder(
-                      itemCount: 24,
+                      itemCount: 24, // one for every hour of a day.
                       itemBuilder: (BuildContext context, int index) {
                         return Stack(
                           clipBehavior: Clip.none,
                           children: [
+                            //representation of a fulle houre
                             Container(
                               padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
                               width: double.infinity,
@@ -34,6 +30,7 @@ class TimeLineStroke extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
+                                  //representation of the first quarter
                                   SizedBox(
                                     width: double.infinity,
                                     child: CustomPaint(
@@ -42,6 +39,7 @@ class TimeLineStroke extends StatelessWidget {
                                           width: 0.25),
                                     ),
                                   ),
+                                  //representation of a half hour
                                   SizedBox(
                                     width: double.infinity,
                                     child: CustomPaint(
@@ -50,6 +48,7 @@ class TimeLineStroke extends StatelessWidget {
                                           width: 0.5),
                                     ),
                                   ),
+                                  //representation of the last quarter
                                   SizedBox(
                                     width: double.infinity,
                                     child: CustomPaint(
@@ -61,6 +60,7 @@ class TimeLineStroke extends StatelessWidget {
                                 ],
                               ),
                             ),
+                            //representation of a houre
                             Positioned(
                               bottom: -7.5,
                               child: Padding(

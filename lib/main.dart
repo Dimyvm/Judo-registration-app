@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         colorScheme: const ColorScheme(
           brightness: Brightness.light,
           primary: Colors.white,
-          onPrimary: Color(0xff6A638F),
+          onPrimary: Color.fromARGB(255, 40, 39, 42),
           secondary: Colors.grey,
           onSecondary: Colors.grey,
           background: Colors.grey,
