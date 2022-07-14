@@ -123,35 +123,3 @@ class EventTile extends StatelessWidget {
     );
   }
 }
-
-showAlertDialog(BuildContext context) {
-  // set up the button
-  Widget okButton = TextButton(
-    child: const Text("OK"),
-    onPressed: () {},
-  );
-
-  // set up the AlertDialog
-  AlertDialog alert = AlertDialog(
-    title: const Text(
-      "Not permitted to register",
-      style: TextStyle(
-        fontWeight: FontWeight.w900,
-        fontSize: 20.0,
-      ),
-    ),
-    content: const Text('''Registration is only possible 
-30 minutes before and after the start of a training.'''),
-    actions: [
-      okButton,
-    ],
-  );
-
-  // show the dialog
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return alert;
-    },
-  );
-}
