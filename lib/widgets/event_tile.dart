@@ -1,6 +1,6 @@
 import 'package:JudoRegistration/routes.dart';
+import 'package:JudoRegistration/widgets/show_dialog_to_late_to_soon.dart';
 import 'package:flutter/material.dart';
-import 'package:giff_dialog/giff_dialog.dart';
 
 class EventTile extends StatelessWidget {
   final MaterialColor color;
@@ -61,32 +61,9 @@ class EventTile extends StatelessWidget {
             Navigator.pushNamed(context, Routes.registration);
           } else {
             showDialog(
-                      context: context, 
-                      builder: (_) => AssetGiffDialog(
-                            key: const Key("NetworkDialog"),
-                            image: Image.asset(
-                              "assets/images/gif-time.gif",
-                              fit: BoxFit.cover,
-                            ),
-                            entryAnimation: EntryAnimation.bottom,
-                            title: const Text(
-                              'Not permitted to register',
-                              textAlign: TextAlign.center,
-                              style:  TextStyle(
-                                  fontSize: 22.0, fontWeight: FontWeight.w600),
-                            ),
-                            description: const Text(
-                              'Registration is only possible 30 minutes before and after the start of a training.',
-                              textAlign: TextAlign.center,
-                            ),
-                            onOkButtonPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                            onlyOkButton: true,
-                            
-                          ));
-
-           
+              context: context,
+              builder: (_) => const ToLateToSoon(),
+            );
           }
         },
         child: Container(

@@ -9,14 +9,15 @@ import 'package:intl/intl.dart';
 import '../widgets/day_view.dart';
 
 class HomePage extends StatelessWidget {
-
   ///Homeview
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
-    final double heightMinAppbar = (MediaQuery.of(context).size.height - AppBar().preferredSize.height - MediaQuery.of(context).padding.top);
+    final double heightMinAppbar = (MediaQuery.of(context).size.height -
+        AppBar().preferredSize.height -
+        MediaQuery.of(context).padding.top);
     debugPrint('height homepage: $heightMinAppbar');
 
     DateTime now = DateTime.now();
@@ -29,7 +30,7 @@ class HomePage extends StatelessWidget {
 
     DateFormat('hh:mm').format(DateTime(2020, 1, 1, 1, 10));
 
-    cancelTimer(){
+    cancelTimer() {
       toScreensaver!.cancel();
     }
 
@@ -44,27 +45,53 @@ class HomePage extends StatelessWidget {
     //List of events / trainings
     List<Widget> events = [
       EventTile(
-          height: heightMinAppbar,
-          color: Colors.purple,
-          timeline: timeline,
-          width: width,
-          start: DateTime(2022, 6, 28, 20, 45),
-          end: DateTime(2022, 6, 28, 21, 45),
-          title: "U8",
-          comment: "training",
-          scale: 3,
-          callback: cancelTimer,),
+        height: heightMinAppbar,
+        color: Colors.red,
+        timeline: timeline,
+        width: width,
+        start: DateTime(2022, 6, 28, 11, 00),
+        end: DateTime(2022, 6, 28, 12, 45),
+        title: "U8",
+        comment: "training",
+        scale: 3,
+        callback: cancelTimer,
+      ),
       EventTile(
-          height: heightMinAppbar,
-          color: Colors.orange,
-          timeline: timeline,
-          width: width,
-          start: DateTime(2022, 6, 28, 19, 45),
-          end: DateTime(2022, 6, 28, 20, 30),
-          title: "U12",
-          comment: "training",
-          scale: 3,
-          callback: cancelTimer,),
+        height: heightMinAppbar,
+        color: Colors.green,
+        timeline: timeline,
+        width: width,
+        start: DateTime(2022, 6, 28, 13, 30),
+        end: DateTime(2022, 6, 28, 14, 45),
+        title: "U8",
+        comment: "training",
+        scale: 3,
+        callback: cancelTimer,
+      ),
+      EventTile(
+        height: heightMinAppbar,
+        color: Colors.purple,
+        timeline: timeline,
+        width: width,
+        start: DateTime(2022, 6, 28, 20, 45),
+        end: DateTime(2022, 6, 28, 21, 45),
+        title: "U8",
+        comment: "training",
+        scale: 3,
+        callback: cancelTimer,
+      ),
+      EventTile(
+        height: heightMinAppbar,
+        color: Colors.orange,
+        timeline: timeline,
+        width: width,
+        start: DateTime(2022, 6, 28, 19, 45),
+        end: DateTime(2022, 6, 28, 20, 30),
+        title: "U12",
+        comment: "training",
+        scale: 3,
+        callback: cancelTimer,
+      ),
     ];
     return Scaffold(
       appBar: AppBar(
@@ -103,7 +130,6 @@ class HomePage extends StatelessWidget {
       ),
       body: Center(
         child: Stack(
-          
           clipBehavior: Clip.none,
           children: [
             //moving Background layer - previous day
@@ -113,7 +139,6 @@ class HomePage extends StatelessWidget {
               width: width,
               scale: scale,
               timeline: timeline,
-              
             ),
             // moving Background layer - current day
             DayView(
@@ -132,7 +157,7 @@ class HomePage extends StatelessWidget {
               timeline: timeline,
               events: events,
             ),
-            
+
             //timeline
             Positioned(
               left: 1,
