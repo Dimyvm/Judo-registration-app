@@ -92,6 +92,18 @@ class HomePage extends StatelessWidget {
         scale: 3,
         callback: cancelTimer,
       ),
+      EventTile(
+        height: heightMinAppbar,
+        color: Colors.cyan,
+        timeline: timeline,
+        width: width,
+        start: DateTime(2022, 6, 28, 12, 30),
+        end: DateTime(2022, 6, 28, 13, 30),
+        title: "U12",
+        comment: "training",
+        scale: 3,
+        callback: cancelTimer,
+      ),
     ];
     return Scaffold(
       appBar: AppBar(

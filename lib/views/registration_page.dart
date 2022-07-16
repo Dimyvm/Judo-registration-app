@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/person_tile.dart';
+
 class RegistrationPage extends StatelessWidget {
   const RegistrationPage({Key? key}) : super(key: key);
 
@@ -11,7 +13,7 @@ class RegistrationPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Registreer Uw aanwezigheid'),
+        title: const Text('Registreer uw aanwezigheid'),
         centerTitle: true,
         actions: [
           IconButton(onPressed: () {}, icon: const Icon(Icons.person)),
@@ -21,51 +23,8 @@ class RegistrationPage extends StatelessWidget {
         child: ListView.builder(
           itemCount: 25,
           itemBuilder: (BuildContext context, int index) {
-            return Card(
-              elevation: 6,
-              margin: const EdgeInsets.all(10),
-              child:
-                  // Padding(
-                  //   padding: const EdgeInsets.all(10.0),
-                  //   child: ListTile(
-                  //     leading: CircleAvatar(
-                  //       radius: 30,
-                  //       backgroundColor: Colors.purple[100],
-                  //       child: const Icon(
-                  //         Icons.person,
-                  //         size: 32,
-                  //       ),
-                  //     ),
-                  //     title: const Text(
-                  //       'Dimitry Van Mulders',
-                  //       style: TextStyle(fontSize: 24),
-                  //     ),
-                  //     trailing: const Icon(Icons.start_outlined),
-                  //   ),
-                  // ),
-
-                  Container(
-                width: double.infinity,
-                height: (heightMinAppbar / 7) - 20,
-                child: Row(
-                  children: [
-                    CircleAvatar(
-                      radius: 30,
-                      backgroundColor: Colors.purple[100],
-                      child: const Icon(
-                        Icons.person,
-                        size: 32,
-                      ),
-                    ),
-                    const Text(
-                      'Dimitry Van Mulders',
-                      style: TextStyle(fontSize: 24),
-                    ),
-                    const Icon(Icons.start_outlined),
-                  ],
-                ),
-              ),
-            );
+            return 
+            PersonTile(heightMinAppbar: heightMinAppbar, name: 'Dimitry Van Mulders', isRegistered: false,);
           },
         ),
       ),
