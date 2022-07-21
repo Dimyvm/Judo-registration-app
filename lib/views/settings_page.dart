@@ -65,7 +65,7 @@ class SettingsPage extends StatelessWidget {
               child: ListTile(
                 contentPadding: const EdgeInsets.all(12.0),
                 title: const Text(
-                  'test',
+                  'Screensaver',
                   style: TextStyle(fontSize: 24),
                 ),
                 leading: Container(
@@ -77,11 +77,26 @@ class SettingsPage extends StatelessWidget {
                   child: const Icon(Icons.person, size: 32),
                 ),
                 subtitle: const Text(
-                  'test',
+                  'activeer',
                   style: TextStyle(fontSize: 24),
                 ),
                 trailing:
-                    ElevatedButton(onPressed: () {}, child: const Text('test')),
+                    DropdownButton(
+                      focusColor: Colors.white,
+                      value: 5,
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                      iconEnabledColor: Colors.black,
+                      items: <int>[
+                        1,2,3,4,5,10,15,20
+                      ].map<DropdownMenuItem<int>>((int value) {
+                        return DropdownMenuItem<int>(
+                          value: value,
+                          child: Text(value, style: TextStyle(color: Colors.black),))
+                      }
+                      ),
+                     onChanged: onChanged)
               ),
             ),
           ],
