@@ -4,16 +4,20 @@ import 'package:flutter/material.dart';
 
 import 'package:JudoRegistration/constants.dart';
 import 'package:JudoRegistration/routes.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
+import '../controllers/settings_controller.dart';
 import '../widgets/day_view.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends ConsumerWidget{
   ///Homeview
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+
+    final settingsController = ref.watch(settingsControllerProvider);
     final double width = MediaQuery.of(context).size.width;
     final double heightMinAppbar = (MediaQuery.of(context).size.height -
         AppBar().preferredSize.height -
@@ -40,7 +44,7 @@ class HomePage extends StatelessWidget {
     }
 
     toScreensaver = Timer.periodic(
-        const Duration(minutes: 1), (_) => navigateToScreenSaver());
+         Duration(minutes: settingsController.getScreensaverTime()), (_) => navigateToScreenSaver());
 
     //List of events / trainings
     List<Widget> events = [

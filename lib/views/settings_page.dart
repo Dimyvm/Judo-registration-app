@@ -48,10 +48,16 @@ class SettingsPage extends ConsumerWidget {
                     'Activated after x Min',
                     style: TextStyle(fontSize: 24),
                   ),
-                  trailing: SizedBox(
+                  trailing: Container(
                     width: 100,
+                    padding: const EdgeInsets.all(5.0),
+                    decoration: const BoxDecoration(
+                        color: Color(0xffFFF4EC),
+                        borderRadius: BorderRadius.all(Radius.circular(12.0))),
                     child: DropdownButton(
+                        borderRadius: const BorderRadius.all(Radius.circular(12.0)),
                         isExpanded: true,
+                        dropdownColor: const Color(0xffFFF4EC),
                         focusColor: Colors.white,
                         value: settingsController.getScreensaverTime(),
                         style: const TextStyle(
@@ -106,10 +112,18 @@ class SettingsPage extends ConsumerWidget {
                     'Loading API each x Min',
                     style: TextStyle(fontSize: 24),
                   ),
-                  trailing: SizedBox(
+                  trailing: Container(
                     width: 100,
+                    padding: const EdgeInsets.all(5.0),
+                    decoration: const BoxDecoration(
+                        color: Color(0xffEDF6FF),
+                        borderRadius: BorderRadius.all(Radius.circular(12.0))),
+                    
                     child: DropdownButton(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(12.0)),
                         isExpanded: true,
+                        dropdownColor: const Color(0xffEDF6FF),
                         focusColor: Colors.white,
                         value: settingsController.getAPIdataEachTime(),
                         style: const TextStyle(
@@ -166,19 +180,18 @@ class SettingsPage extends ConsumerWidget {
                   ),
                   trailing: Container(
                     width: 100,
+                    padding: const EdgeInsets.all(5.0),
                     decoration: const BoxDecoration(
-                      color: Color(0xffF6B1B0),
-                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                    ),
+                        color: Color(0xffF5D9DA),
+                        borderRadius: BorderRadius.all(Radius.circular(12.0))),
                     child: DropdownButton(
-                        
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(12.0)),
                         isExpanded: true,
                         dropdownColor: const Color(0xffF5D9DA),
                         focusColor: Colors.white,
                         value: settingsController.getRegistrationStartTime(),
-                        style: const TextStyle(
-                          color: Colors.white,
-                        ),
+                        style: const TextStyle(color: Colors.white),
                         iconEnabledColor: Colors.black,
                         items: <int>[1, 2, 3, 4, 5, 10, 15, 20, 30, 60]
                             .map<DropdownMenuItem<int>>((int value) {
