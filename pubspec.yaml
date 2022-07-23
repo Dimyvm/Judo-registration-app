@@ -20,6 +20,7 @@ dependencies:
   video_player: ^2.4.5
   giff_dialog: ^1.0.1
   flutter_riverpod: ^1.0.4
+  gsheets: ^0.4.2
 
 dev_dependencies:
   flutter_test:

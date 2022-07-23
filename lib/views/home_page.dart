@@ -10,19 +10,17 @@ import 'package:intl/intl.dart';
 import '../controllers/settings_controller.dart';
 import '../widgets/day_view.dart';
 
-class HomePage extends ConsumerWidget{
+class HomePage extends ConsumerWidget {
   ///Homeview
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     final settingsController = ref.watch(settingsControllerProvider);
     final double width = MediaQuery.of(context).size.width;
     final double heightMinAppbar = (MediaQuery.of(context).size.height -
         AppBar().preferredSize.height -
         MediaQuery.of(context).padding.top);
-    debugPrint('height homepage: $heightMinAppbar');
 
     DateTime now = DateTime.now();
     double timeline = (heightMinAppbar / 1440) * (now.hour * 60 + now.minute);
@@ -34,17 +32,24 @@ class HomePage extends ConsumerWidget{
 
     DateFormat('hh:mm').format(DateTime(2020, 1, 1, 1, 10));
 
+    //stop timer
     cancelTimer() {
       toScreensaver!.cancel();
+      debugPrint('timer is stopt');
     }
 
+    //navigation to screensaver
     navigateToScreenSaver() {
       cancelTimer();
       Navigator.pushNamed(context, Routes.screensaver);
     }
 
     toScreensaver = Timer.periodic(
-         Duration(minutes: settingsController.getScreensaverTime()), (_) => navigateToScreenSaver());
+      Duration(minutes: settingsController.getScreensaverTime()),
+      (_) => navigateToScreenSaver(),
+    );
+    debugPrint('timer is start');
+      debugPrint('time: ${settingsController.getScreensaverTime()}');
 
     //List of events / trainings
     List<Widget> events = [
@@ -136,6 +141,7 @@ class HomePage extends ConsumerWidget{
         actions: [
           IconButton(
               onPressed: () {
+                cancelTimer();
                 Navigator.pushNamed(context, Routes.pageSettings);
               },
               icon: const Icon(
