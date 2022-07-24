@@ -21,6 +21,7 @@ dependencies:
   giff_dialog: ^1.0.1
   flutter_riverpod: ^1.0.4
   gsheets: ^0.4.2
+  http: ^0.13.4
 
 dev_dependencies:
   flutter_test:
