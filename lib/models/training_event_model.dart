@@ -1,0 +1,11 @@
+
+class TrainingEvent{
+
+  final String group;
+  final String detail;
+  final DateTime dateTimeStart;
+  final DateTime dateTimeEnd;
+
+  TrainingEvent({required this.group, required this.detail, required this.dateTimeStart, required this.dateTimeEnd});
+
+}
