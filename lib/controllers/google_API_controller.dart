@@ -1,7 +1,7 @@
 
 // gsheets 
-//implementation id: AKfycbw7Eg82aoMsrm0___j2poFME_w_DchQxM_CjBITIjYHXWunxboKuWKyLHqkgs6CXRbn
-// https://script.google.com/macros/s/AKfycbw7Eg82aoMsrm0___j2poFME_w_DchQxM_CjBITIjYHXWunxboKuWKyLHqkgs6CXRbn/exec
+//implementation id: AKfycbx39qXu32ckbRVQOttym4ldbAV2SIwOuMDk8P3jQFgSB5MXZlboJCOGao-v-z1y2ZFR
+// https://script.google.com/macros/s/AKfycbx39qXu32ckbRVQOttym4ldbAV2SIwOuMDk8P3jQFgSB5MXZlboJCOGao-v-z1y2ZFR/exec
 
 
 import 'package:JudoRegistration/models/member_model.dart';
@@ -14,7 +14,7 @@ class apiController{
 
   List<Member> memberList = [];
   List<EventTile> eventsList = [];
-  static const String URL = 'https://script.google.com/macros/s/AKfycbw7Eg82aoMsrm0___j2poFME_w_DchQxM_CjBITIjYHXWunxboKuWKyLHqkgs6CXRbn/exec';
+  static const String URL = 'https://script.google.com/macros/s/AKfycbx39qXu32ckbRVQOttym4ldbAV2SIwOuMDk8P3jQFgSB5MXZlboJCOGao-v-z1y2ZFR/exec';
 
   // Success Status Message
   static const STATUS_SUCCESS = "SUCCESS";
