@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:JudoRegistration/controllers/google_API_controller.dart';
 import 'package:JudoRegistration/widgets/event_tile.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +17,7 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    apiController.getListEeventTile();
     final settingsController = ref.watch(settingsControllerProvider);
     final double width = MediaQuery.of(context).size.width;
     final double heightMinAppbar = (MediaQuery.of(context).size.height -
@@ -114,6 +116,9 @@ class HomePage extends ConsumerWidget {
         callback: cancelTimer,
       ),
     ];
+
+    
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
