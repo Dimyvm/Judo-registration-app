@@ -10,4 +10,5 @@ class Registration{
 
   Registration({required this.registrationDateTime, required this.trainingEvent, required this.member});
 
+
 }

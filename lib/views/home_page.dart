@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:JudoRegistration/controllers/google_API_controller.dart';
+import 'package:JudoRegistration/controllers/google_api_controller.dart';
 import 'package:JudoRegistration/widgets/event_tile.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +17,7 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    apiController.getListEeventTile();
+    ApiController.getListEeventTile();
     final settingsController = ref.watch(settingsControllerProvider);
     final double width = MediaQuery.of(context).size.width;
     final double heightMinAppbar = (MediaQuery.of(context).size.height -
