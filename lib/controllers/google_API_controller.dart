@@ -29,8 +29,9 @@ class ApiController{
         //convert JSON member data in model.
         var jsonmembers = jsonResponse['Leden'] as List;
         memberList = List<Member>.from(jsonmembers.map((model)=> Member.fromJson(model)));
-        debugPrint(memberList[1].surName.toString());
 
+        debugPrint('length of trainingslist ${trainingEvent.length.toString()}');
+        debugPrint('Start time : ${trainingEvent[1].dateTimeStart.toString()}');
       } else {
         debugPrint('Request failed with status: ${response.statusCode}.');
       }

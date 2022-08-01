@@ -11,7 +11,7 @@ factory Member.fromJson(Map<String, dynamic> json) {
     return Member(
       surName: json['Voornaam'] as String,
       name: json['Achternaam'] as String,
-      birthDate: json['Geboortedatum'],
+      birthDate: DateTime.parse(json['Geboortedatum']),
       group: json['Groep'] as String,
     );
   }
