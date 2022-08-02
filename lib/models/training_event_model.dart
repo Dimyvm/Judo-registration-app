@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 class TrainingEvent {
   final String group;
@@ -13,22 +12,21 @@ class TrainingEvent {
       required this.dateTimeEnd});
 
   factory TrainingEvent.fromJson(Map<String, dynamic> json) {
-    // DateTime _dateTimeStart = DateTime.parse(json['datum start']).add(const Duration(hours: 2, minutes: 00));
-    DateTime _dateTimeStart = DateTime.parse(json['datum start']).toLocal();
-    _dateTimeStart = _dateTimeStart.add(Duration(
+    DateTime dateTimeStart = DateTime.parse(json['datum start']).toLocal();
+    dateTimeStart = dateTimeStart.add(Duration(
         hours: int.parse(json['uur start'].toString().substring(0, 2)),
         minutes: int.parse(json['uur start'].toString().substring(3, 5))));
 
-    DateTime _dateTimeEnd = DateTime.parse(json['datum einde']).toLocal();
-    _dateTimeEnd = _dateTimeEnd.add(Duration(
+    DateTime dateTimeEnd = DateTime.parse(json['datum einde']).toLocal();
+    dateTimeEnd = dateTimeEnd.add(Duration(
         hours: int.parse(json['uur einde'].toString().substring(0, 2)),
         minutes: int.parse(json['uur einde'].toString().substring(3, 5))));
 
     return TrainingEvent(
       group: json['Groep'] as String,
       detail: json['Detail'] as String,
-      dateTimeStart: _dateTimeStart,
-      dateTimeEnd: _dateTimeEnd,
+      dateTimeStart: dateTimeStart,
+      dateTimeEnd: dateTimeEnd,
     );
   }
 }
