@@ -1,17 +1,23 @@
-import 'package:JudoRegistration/secrets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:JudoRegistration/constants.dart';
 import 'package:JudoRegistration/models/member_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 
 import '../models/training_event_model.dart';
+import '../widgets/event_tile.dart';
 
-class ApiController {
-  static List<Member> memberList = [];
-  static List<TrainingEvent> trainingEvent = [];
+final apiControllerProvider =  ChangeNotifierProvider<ApiController>((ref) {
+  return ApiController();
+});
+
+class ApiController extends ChangeNotifier{
+   List<Member> _memberList = [];
+   List<TrainingEvent> _trainingEvent = [];
 
   // get data
-  static getListEeventTile() async {
+   getDatafromAPI() async {
     try {
       var response = await http.get(apiUrl);
       if (response.statusCode == 200) {
@@ -21,18 +27,14 @@ class ApiController {
 
         //convert JSON Trainings data in model.
         var jsonTraining = jsonResponse['Trainings'] as List;
-        trainingEvent = List<TrainingEvent>.from(
-            jsonTraining.map((model) => TrainingEvent.fromJson(model)));
+        _trainingEvent = List<TrainingEvent>.from(jsonTraining.map((model) => TrainingEvent.fromJson(model)));
 
         //convert JSON member data in model.
         var jsonmembers = jsonResponse['Leden'] as List;
-        memberList = List<Member>.from(
-            jsonmembers.map((model) => Member.fromJson(model)));
+        _memberList = List<Member>.from(jsonmembers.map((model) => Member.fromJson(model)));
 
-        debugPrint(
-            'length of trainingslist ${trainingEvent.length.toString()}');
-        debugPrint(
-            'Start time : ${trainingEvent[15].dateTimeStart.toString()}');
+        notifyListeners();
+
       } else {
         debugPrint('Request failed with status: ${response.statusCode}.');
       }
@@ -42,6 +44,20 @@ class ApiController {
   }
 
 // get members per by category
+List<Member> getMembersByGroup(String group){
+  // List<Member> filterMemberListByGroup = _memberList.where((o) => o.group == '>=15').toList();
+  List<Member> filterMemberListByGroup = _memberList.where((o) => o.group == group).toList();
+ 
+  return filterMemberListByGroup;
+}
+
+// get list EventTile for a specific day
+List<EventTile> getListEventTile(int day){
+  // This function will return a List of EventTile for a specific day.
+  // int day 0 = current day, -1 = previous day, 1 = is the next day. 
+  List<EventTile> EventTileList = [];
+  return EventTileList;
+}
 
 // register members training
 

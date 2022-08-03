@@ -7,10 +7,8 @@ class SettingsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final double heightMinAppbar = (MediaQuery.of(context).size.height -
-    //     AppBar().preferredSize.height -
-    //     MediaQuery.of(context).padding.top);
-
+    
+    //State management
     final settingsController = ref.watch(settingsControllerProvider);
 
     return Scaffold(

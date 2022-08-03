@@ -9,8 +9,14 @@ import 'package:JudoRegistration/views/home_page.dart';
 import 'package:JudoRegistration/views/settings_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'controllers/google_API_controller.dart';
+
 // TO DO:
-// models: convert string type in to DateTime
+// connect screen to models
+// sort membelist by group.
+// make post request for trainingsregistration
+// getListEventTile return a List EventTile of a specific day
+
 
 class MyHttpOverrides extends HttpOverrides{
   @override
@@ -31,11 +37,17 @@ void main() {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+
+    //State management
+    final apiController = ref.watch(apiControllerProvider);
+
+    apiController.getDatafromAPI();
+
     return MaterialApp(
       title: appTitle,
       debugShowCheckedModeBanner: false,
