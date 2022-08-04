@@ -16,6 +16,7 @@ import 'controllers/google_API_controller.dart';
 // sort membelist by group.
 // make post request for trainingsregistration
 // getListEventTile return a List EventTile of a specific day
+// ADD package wakelock 0.6.2
 
 
 class MyHttpOverrides extends HttpOverrides{
