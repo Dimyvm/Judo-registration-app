@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:JudoRegistration/models/training_event_model.dart';
 import 'package:JudoRegistration/widgets/event_tile.dart';
 import 'package:flutter/material.dart';
 
@@ -22,18 +23,23 @@ class HomePage extends ConsumerWidget {
     final settingsController = ref.watch(settingsControllerProvider);
     final apiController = ref.watch(apiControllerProvider);
 
+    //height of the screen - Appbar height
     final double width = MediaQuery.of(context).size.width;
     final double heightMinAppbar = (MediaQuery.of(context).size.height -
         AppBar().preferredSize.height -
         MediaQuery.of(context).padding.top);
 
-    DateTime now = DateTime.now();
-    double timeline = (heightMinAppbar / 1440) * (now.hour * 60 + now.minute);
+    DateTime now = DateTime.now(); // Current DateTime
+    double timeline = (heightMinAppbar / 1440) *
+        (now.hour * 60 +
+            now.minute); // net height of screen in relation to one day in minutes
 
-    String month = months[now.month - 1];
-    double scale = 3;
+    String month =
+        months[now.month - 1]; //current month in String for the Appbar.
+    double scale =
+        3; // to show all larger or smaller, but in the right proportions.
 
-    Timer? toScreensaver;
+    Timer? toScreensaver; // A timer to navigate to videoScreensaver.
 
     DateFormat('hh:mm').format(DateTime(2020, 1, 1, 1, 10));
 
@@ -49,12 +55,36 @@ class HomePage extends ConsumerWidget {
       Navigator.pushNamed(context, Routes.screensaver);
     }
 
+    //Start Timer.
     toScreensaver = Timer.periodic(
       Duration(minutes: settingsController.getScreensaverTime()),
       (_) => navigateToScreenSaver(),
     );
-    debugPrint('timer is start');
-      debugPrint('time: ${settingsController.getScreensaverTime()}');
+
+    
+
+    // convert the event of day x in a graphical EventTile.
+    List<Widget> convertTrainingEventToEventTile(List<TrainingEvent> trainingEvents) {
+
+      List<Widget> EventTileList = [];
+      
+      for (var trainingEvent in trainingEvents) {
+          EventTileList.add(
+          EventTile(
+            color: Colors.red, 
+            timeline: timeline,
+            width: width,
+            height: heightMinAppbar,
+            start: trainingEvent.dateTimeStart,
+            end: trainingEvent.dateTimeEnd,
+            title: trainingEvent.group,
+            comment: trainingEvent.detail,
+            scale: scale,
+            callback: cancelTimer));
+      }
+
+      return EventTileList;
+    }
 
     //List of events / trainings
     List<Widget> events = [
@@ -119,8 +149,6 @@ class HomePage extends ConsumerWidget {
         callback: cancelTimer,
       ),
     ];
-
-    
 
     return Scaffold(
       appBar: AppBar(

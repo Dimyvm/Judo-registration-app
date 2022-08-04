@@ -1,3 +1,4 @@
+import 'package:JudoRegistration/extentions.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:JudoRegistration/constants.dart';
 import 'package:JudoRegistration/models/member_model.dart';
@@ -46,17 +47,19 @@ class ApiController extends ChangeNotifier{
 // get members per by category
 List<Member> getMembersByGroup(String group){
   // List<Member> filterMemberListByGroup = _memberList.where((o) => o.group == '>=15').toList();
-  List<Member> filterMemberListByGroup = _memberList.where((o) => o.group == group).toList();
+  List<Member> filterMemberListByGroup = _memberList.where((element) => element.group == group).toList();
  
   return filterMemberListByGroup;
 }
 
 // get list EventTile for a specific day
-List<EventTile> getListEventTile(int day){
+List<TrainingEvent> getListEventTile(int day){
   // This function will return a List of EventTile for a specific day.
   // int day 0 = current day, -1 = previous day, 1 = is the next day. 
-  List<EventTile> EventTileList = [];
-  return EventTileList;
+
+  DateTime currentDate = DateTime.now();
+  
+  return _trainingEvent.where((element) => element.dateTimeStart.isSameDate(currentDate)== true).toList();
 }
 
 // register members training

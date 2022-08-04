@@ -17,6 +17,7 @@ import 'controllers/google_API_controller.dart';
 // make post request for trainingsregistration
 // getListEventTile return a List EventTile of a specific day
 // ADD package wakelock 0.6.2
+// Make EventTile color dynamic.
 
 
 class MyHttpOverrides extends HttpOverrides{
