@@ -1,16 +1,12 @@
 import 'dart:async';
-
-import 'package:JudoRegistration/models/training_event_model.dart';
-import 'package:JudoRegistration/widgets/event_tile.dart';
 import 'package:flutter/material.dart';
-
 import 'package:JudoRegistration/constants.dart';
 import 'package:JudoRegistration/routes.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-
 import '../controllers/google_API_controller.dart';
 import '../controllers/settings_controller.dart';
+import '../helpers/event_tile_helper.dart';
 import '../widgets/day_view.dart';
 
 class HomePage extends ConsumerWidget {
@@ -61,94 +57,70 @@ class HomePage extends ConsumerWidget {
       (_) => navigateToScreenSaver(),
     );
 
-    
-
-    // convert the event of day x in a graphical EventTile.
-    List<Widget> convertTrainingEventToEventTile(List<TrainingEvent> trainingEvents) {
-
-      List<Widget> EventTileList = [];
-      
-      for (var trainingEvent in trainingEvents) {
-          EventTileList.add(
-          EventTile(
-            color: Colors.red, 
-            timeline: timeline,
-            width: width,
-            height: heightMinAppbar,
-            start: trainingEvent.dateTimeStart,
-            end: trainingEvent.dateTimeEnd,
-            title: trainingEvent.group,
-            comment: trainingEvent.detail,
-            scale: scale,
-            callback: cancelTimer));
-      }
-
-      return EventTileList;
-    }
 
     //List of events / trainings
-    List<Widget> events = [
-      EventTile(
-        height: heightMinAppbar,
-        color: Colors.red,
-        timeline: timeline,
-        width: width,
-        start: DateTime(2022, 6, 28, 11, 00),
-        end: DateTime(2022, 6, 28, 12, 45),
-        title: "U8",
-        comment: "training",
-        scale: 3,
-        callback: cancelTimer,
-      ),
-      EventTile(
-        height: heightMinAppbar,
-        color: Colors.green,
-        timeline: timeline,
-        width: width,
-        start: DateTime(2022, 6, 28, 13, 30),
-        end: DateTime(2022, 6, 28, 14, 45),
-        title: "U8",
-        comment: "training",
-        scale: 3,
-        callback: cancelTimer,
-      ),
-      EventTile(
-        height: heightMinAppbar,
-        color: Colors.purple,
-        timeline: timeline,
-        width: width,
-        start: DateTime(2022, 6, 28, 20, 45),
-        end: DateTime(2022, 6, 28, 21, 45),
-        title: "U8",
-        comment: "training",
-        scale: 3,
-        callback: cancelTimer,
-      ),
-      EventTile(
-        height: heightMinAppbar,
-        color: Colors.orange,
-        timeline: timeline,
-        width: width,
-        start: DateTime(2022, 6, 28, 19, 45),
-        end: DateTime(2022, 6, 28, 20, 30),
-        title: "U12",
-        comment: "training",
-        scale: 3,
-        callback: cancelTimer,
-      ),
-      EventTile(
-        height: heightMinAppbar,
-        color: Colors.cyan,
-        timeline: timeline,
-        width: width,
-        start: DateTime(2022, 6, 28, 13, 15),
-        end: DateTime(2022, 6, 28, 14, 15),
-        title: "U12",
-        comment: "training",
-        scale: 3,
-        callback: cancelTimer,
-      ),
-    ];
+    // List<Widget> events = [
+    //   EventTile(
+    //     height: heightMinAppbar,
+    //     color: Colors.red,
+    //     timeline: timeline,
+    //     width: width,
+    //     start: DateTime(2022, 6, 28, 11, 00),
+    //     end: DateTime(2022, 6, 28, 12, 45),
+    //     title: "U8",
+    //     comment: "training",
+    //     scale: 3,
+    //     callback: cancelTimer,
+    //   ),
+    //   EventTile(
+    //     height: heightMinAppbar,
+    //     color: Colors.green,
+    //     timeline: timeline,
+    //     width: width,
+    //     start: DateTime(2022, 6, 28, 13, 30),
+    //     end: DateTime(2022, 6, 28, 14, 45),
+    //     title: "U8",
+    //     comment: "training",
+    //     scale: 3,
+    //     callback: cancelTimer,
+    //   ),
+    //   EventTile(
+    //     height: heightMinAppbar,
+    //     color: Colors.purple,
+    //     timeline: timeline,
+    //     width: width,
+    //     start: DateTime(2022, 6, 28, 20, 45),
+    //     end: DateTime(2022, 6, 28, 21, 45),
+    //     title: "U8",
+    //     comment: "training",
+    //     scale: 3,
+    //     callback: cancelTimer,
+    //   ),
+    //   EventTile(
+    //     height: heightMinAppbar,
+    //     color: Colors.orange,
+    //     timeline: timeline,
+    //     width: width,
+    //     start: DateTime(2022, 6, 28, 19, 45),
+    //     end: DateTime(2022, 6, 28, 20, 30),
+    //     title: "U12",
+    //     comment: "training",
+    //     scale: 3,
+    //     callback: cancelTimer,
+    //   ),
+    //   EventTile(
+    //     height: heightMinAppbar,
+    //     color: Colors.cyan,
+    //     timeline: timeline,
+    //     width: width,
+    //     start: DateTime(2022, 6, 28, 13, 15),
+    //     end: DateTime(2022, 6, 28, 14, 15),
+    //     title: "U12",
+    //     comment: "training",
+    //     scale: 3,
+    //     callback: cancelTimer,
+    //   ),
+    // ];
 
     return Scaffold(
       appBar: AppBar(
@@ -197,6 +169,7 @@ class HomePage extends ConsumerWidget {
               width: width,
               scale: scale,
               timeline: timeline,
+              events: convertTrainingEventToEventTile(apiController.getListEventTile(-1),timeline, width, heightMinAppbar, scale, cancelTimer,),
             ),
             // moving Background layer - current day
             DayView(
@@ -205,7 +178,8 @@ class HomePage extends ConsumerWidget {
               width: width,
               scale: scale,
               timeline: timeline,
-              events: events,
+              events: convertTrainingEventToEventTile(apiController.getListEventTile(0),timeline, width, heightMinAppbar, scale, cancelTimer,),
+              
             ),
             // moving Background layer - next day
             DayView(
@@ -213,7 +187,7 @@ class HomePage extends ConsumerWidget {
               width: width,
               scale: scale,
               timeline: timeline,
-              events: events,
+              events: convertTrainingEventToEventTile(apiController.getListEventTile(1),timeline, width, heightMinAppbar, scale, cancelTimer,),
             ),
 
             //timeline

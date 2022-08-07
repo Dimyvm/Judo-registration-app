@@ -10,14 +10,12 @@ import 'package:JudoRegistration/views/settings_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'controllers/google_API_controller.dart';
+import 'controllers/settings_controller.dart';
 
 // TO DO:
-// connect screen to models
-// sort membelist by group.
 // make post request for trainingsregistration
-// getListEventTile return a List EventTile of a specific day
 // ADD package wakelock 0.6.2
-// Make EventTile color dynamic.
+// splashscreen
 
 
 class MyHttpOverrides extends HttpOverrides{
@@ -28,9 +26,10 @@ class MyHttpOverrides extends HttpOverrides{
   }
 }
 
-void main() {
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
+  await SettingsController.init();
 
   runApp(
     const ProviderScope(

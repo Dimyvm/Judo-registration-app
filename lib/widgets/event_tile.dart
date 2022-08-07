@@ -1,8 +1,10 @@
+import 'package:JudoRegistration/controllers/settings_controller.dart';
 import 'package:JudoRegistration/routes.dart';
 import 'package:JudoRegistration/widgets/show_dialog_to_late_to_soon.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class EventTile extends StatelessWidget {
+class EventTile extends ConsumerWidget {
   final MaterialColor color;
   final double timeline;
   final double width;
@@ -30,7 +32,10 @@ class EventTile extends StatelessWidget {
       : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    //State management
+    final settingsController = ref.watch(settingsControllerProvider);
+
     ///Convert time in minutes.
     int getTimeInMinutes(DateTime dateTime) {
       return dateTime.hour * 60 + dateTime.minute;
@@ -41,7 +46,7 @@ class EventTile extends StatelessWidget {
       //you can only registrate for a event from 30min before until 30min after the start.
 
       DateTime now = DateTime.now();
-      int registarTime = 30;
+      int registarTime = settingsController.getRegistrationStartTime();
       int diff = getTimeInMinutes(start) - getTimeInMinutes(now);
 
       if (diff <= registarTime && diff >= -registarTime) {

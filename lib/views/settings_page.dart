@@ -7,7 +7,6 @@ class SettingsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    
     //State management
     final settingsController = ref.watch(settingsControllerProvider);
 
@@ -53,7 +52,8 @@ class SettingsPage extends ConsumerWidget {
                         color: Color(0xffFFF4EC),
                         borderRadius: BorderRadius.all(Radius.circular(12.0))),
                     child: DropdownButton(
-                        borderRadius: const BorderRadius.all(Radius.circular(12.0)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(12.0)),
                         isExpanded: true,
                         dropdownColor: const Color(0xffFFF4EC),
                         focusColor: Colors.white,
@@ -116,7 +116,6 @@ class SettingsPage extends ConsumerWidget {
                     decoration: const BoxDecoration(
                         color: Color(0xffEDF6FF),
                         borderRadius: BorderRadius.all(Radius.circular(12.0))),
-                    
                     child: DropdownButton(
                         borderRadius:
                             const BorderRadius.all(Radius.circular(12.0)),
@@ -218,35 +217,37 @@ class SettingsPage extends ConsumerWidget {
               elevation: 6,
               margin: const EdgeInsets.all(10),
               child: ListTile(
-                  contentPadding: const EdgeInsets.all(12.0),
-                  title: const Text(
-                    'Pictures',
-                    style: TextStyle(fontSize: 24),
+                contentPadding: const EdgeInsets.all(12.0),
+                title: const Text(
+                  'Pictures',
+                  style: TextStyle(fontSize: 24),
+                ),
+                leading: Container(
+                  width: 64.0,
+                  height: 64.0,
+                  decoration: BoxDecoration(
+                      color: const Color(0xffDAD8E6),
+                      borderRadius: BorderRadius.circular(10.0)),
+                  child: const Icon(
+                    Icons.person,
+                    size: 32,
+                    color: Color(0xff7A749B),
                   ),
-                  leading: Container(
-                    width: 64.0,
-                    height: 64.0,
-                    decoration: BoxDecoration(
-                        color: const Color(0xffDAD8E6),
-                        borderRadius: BorderRadius.circular(10.0)),
-                    child: const Icon(
-                      Icons.person,
-                      size: 32,
-                      color: Color(0xff7A749B),
-                    ),
-                  ),
-                  subtitle: const Text(
-                    'loading avatar pictures',
-                    style: TextStyle(fontSize: 24),
-                  ),
-                  trailing: SizedBox(
-                      width: 100,
-                      child: Switch(
-                          activeColor: const Color(0xff7A749B),
-                          value: settingsController.loadingAvatarPicturs(),
-                          onChanged: (value) {
-                            settingsController.setLoadingAvatarPictures(value);
-                          }))),
+                ),
+                subtitle: const Text(
+                  'loading avatar pictures',
+                  style: TextStyle(fontSize: 24),
+                ),
+                trailing: SizedBox(
+                  width: 100,
+                  child: Switch(
+                      activeColor: const Color(0xff7A749B),
+                      value: settingsController.loadingAvatarPicturs(),
+                      onChanged: (value) {
+                        settingsController.setLoadingAvatarPictures(value);
+                      }),
+                ),
+              ),
             ),
           ],
         ),

@@ -30,10 +30,8 @@ class DayView extends StatelessWidget {
       this.events = const []})
       : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
-
 
     ///Moving the DayView in function of time
     double? getPosition(){
