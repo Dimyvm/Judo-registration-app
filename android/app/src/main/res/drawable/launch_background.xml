@@ -6,9 +6,9 @@
         <color android:color="#fafafa" />
    </item>
     <!-- You can insert your own image assets here -->
-    <item>
+    <item android:width="200dp" android:height="200dp" android:gravity="center">
         <bitmap
-            android:gravity="center"
+            
             android:src="@mipmap/logojudotielt" />
     </item>
 </layer-list>
