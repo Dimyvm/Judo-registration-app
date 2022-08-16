@@ -58,69 +58,6 @@ class HomePage extends ConsumerWidget {
     );
 
 
-    //List of events / trainings
-    // List<Widget> events = [
-    //   EventTile(
-    //     height: heightMinAppbar,
-    //     color: Colors.red,
-    //     timeline: timeline,
-    //     width: width,
-    //     start: DateTime(2022, 6, 28, 11, 00),
-    //     end: DateTime(2022, 6, 28, 12, 45),
-    //     title: "U8",
-    //     comment: "training",
-    //     scale: 3,
-    //     callback: cancelTimer,
-    //   ),
-    //   EventTile(
-    //     height: heightMinAppbar,
-    //     color: Colors.green,
-    //     timeline: timeline,
-    //     width: width,
-    //     start: DateTime(2022, 6, 28, 13, 30),
-    //     end: DateTime(2022, 6, 28, 14, 45),
-    //     title: "U8",
-    //     comment: "training",
-    //     scale: 3,
-    //     callback: cancelTimer,
-    //   ),
-    //   EventTile(
-    //     height: heightMinAppbar,
-    //     color: Colors.purple,
-    //     timeline: timeline,
-    //     width: width,
-    //     start: DateTime(2022, 6, 28, 20, 45),
-    //     end: DateTime(2022, 6, 28, 21, 45),
-    //     title: "U8",
-    //     comment: "training",
-    //     scale: 3,
-    //     callback: cancelTimer,
-    //   ),
-    //   EventTile(
-    //     height: heightMinAppbar,
-    //     color: Colors.orange,
-    //     timeline: timeline,
-    //     width: width,
-    //     start: DateTime(2022, 6, 28, 19, 45),
-    //     end: DateTime(2022, 6, 28, 20, 30),
-    //     title: "U12",
-    //     comment: "training",
-    //     scale: 3,
-    //     callback: cancelTimer,
-    //   ),
-    //   EventTile(
-    //     height: heightMinAppbar,
-    //     color: Colors.cyan,
-    //     timeline: timeline,
-    //     width: width,
-    //     start: DateTime(2022, 6, 28, 13, 15),
-    //     end: DateTime(2022, 6, 28, 14, 15),
-    //     title: "U12",
-    //     comment: "training",
-    //     scale: 3,
-    //     callback: cancelTimer,
-    //   ),
-    // ];
 
     return Scaffold(
       appBar: AppBar(

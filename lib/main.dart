@@ -15,7 +15,6 @@ import 'controllers/settings_controller.dart';
 // TO DO:
 // make post request for trainingsregistration
 // ADD package wakelock 0.6.2
-// splashscreen
 
 
 class MyHttpOverrides extends HttpOverrides{
@@ -67,10 +66,6 @@ class MyApp extends ConsumerWidget {
           onError: Colors.grey,
         ),
 
-        // appBarTheme: const AppBarTheme(
-        //   color: primaryColor,
-
-        // ),
       ),
       routes: {
         Routes.pageHome: (context) => const HomePage(),
