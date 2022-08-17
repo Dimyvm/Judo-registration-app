@@ -2,10 +2,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
-import 'package:JudoRegistration/constants.dart';
-import 'package:JudoRegistration/models/member_model.dart';
+import 'package:judoregistration/constants.dart';
+import 'package:judoregistration/models/member_model.dart';
 import '../models/training_event_model.dart';
-import 'package:JudoRegistration/extentions.dart';
+import 'package:judoregistration/extentions.dart';
 
 
 final apiControllerProvider =  ChangeNotifierProvider<ApiController>((ref) {

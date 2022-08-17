@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:JudoRegistration/constants.dart';
-import 'package:JudoRegistration/routes.dart';
+import 'package:judoregistration/constants.dart';
+import 'package:judoregistration/routes.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import '../controllers/google_API_controller.dart';
+import '../controllers/google_api_controller.dart';
 import '../controllers/settings_controller.dart';
 import '../helpers/event_tile_helper.dart';
 import '../widgets/day_view.dart';

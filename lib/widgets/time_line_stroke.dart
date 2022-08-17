@@ -1,4 +1,4 @@
-import 'package:JudoRegistration/widgets/custom_line.dart';
+import 'package:judoregistration/widgets/custom_line.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

@@ -1,6 +1,6 @@
 
-import 'package:JudoRegistration/models/member_model.dart';
-import 'package:JudoRegistration/models/training_event_model.dart';
+import 'package:judoregistration/models/member_model.dart';
+import 'package:judoregistration/models/training_event_model.dart';
 
 class Registration{
 

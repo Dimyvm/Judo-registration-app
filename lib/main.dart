@@ -1,15 +1,15 @@
 import 'dart:io';
 
-import 'package:JudoRegistration/views/registration_page.dart';
-import 'package:JudoRegistration/views/screensaver_page.dart';
+import 'package:judoregistration/views/registration_page.dart';
+import 'package:judoregistration/views/screensaver_page.dart';
 import 'package:flutter/material.dart';
-import 'package:JudoRegistration/constants.dart';
-import 'package:JudoRegistration/routes.dart';
-import 'package:JudoRegistration/views/home_page.dart';
-import 'package:JudoRegistration/views/settings_page.dart';
+import 'package:judoregistration/constants.dart';
+import 'package:judoregistration/routes.dart';
+import 'package:judoregistration/views/home_page.dart';
+import 'package:judoregistration/views/settings_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'controllers/google_API_controller.dart';
+import 'controllers/google_api_controller.dart';
 import 'controllers/settings_controller.dart';
 
 // TO DO:

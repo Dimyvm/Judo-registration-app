@@ -1,6 +1,6 @@
-import 'package:JudoRegistration/controllers/settings_controller.dart';
-import 'package:JudoRegistration/routes.dart';
-import 'package:JudoRegistration/widgets/show_dialog_to_late_to_soon.dart';
+import 'package:judoregistration/controllers/settings_controller.dart';
+import 'package:judoregistration/routes.dart';
+import 'package:judoregistration/widgets/show_dialog_to_late_to_soon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
