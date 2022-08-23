@@ -22,7 +22,6 @@ List<Widget> convertTrainingEventToEventTile(List<TrainingEvent> trainingEvents,
             scale: scale,
             callback: cancelTimer));
       }
-
       return eventTileList;
     }
 

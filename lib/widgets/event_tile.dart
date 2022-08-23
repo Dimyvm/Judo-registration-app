@@ -56,14 +56,15 @@ class EventTile extends ConsumerWidget {
       }
     }
 
+
     return Positioned(
       left: 0,
       top: ((height / 1440) * getTimeInMinutes(start)) * scale, // start time
       child: GestureDetector(
         onTap: () {
           if (checkIfRegistrationIspossible()) {
-            callback();
-            Navigator.pushNamed(context, Routes.registration);
+            callback(); //Cancel screenSaver timer
+            Navigator.pushNamed(context, Routes.registration, arguments: title);
           } else {
             showDialog(
               context: context,

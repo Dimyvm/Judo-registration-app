@@ -14,7 +14,8 @@ import 'controllers/settings_controller.dart';
 
 // TO DO:
 // make post request for trainingsregistration
-// ADD package wakelock 0.6.2
+// Add package wakelock 0.6.2
+// Add testing
 
 
 class MyHttpOverrides extends HttpOverrides{
