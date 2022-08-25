@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class PersonTile extends StatelessWidget {
+import '../controllers/google_api_controller.dart';
+import '../models/member_model.dart';
+
+class PersonTile extends ConsumerWidget {
   final double heightMinAppbar;
-  final String name;
+  final Member member;
   final bool isRegistered;
-  const PersonTile({Key? key, required this.heightMinAppbar, required this.name, required this.isRegistered}) : super(key: key);
+  const PersonTile({Key? key, required this.heightMinAppbar, required this.member, required this.isRegistered}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    //State management
+    final apiController = ref.watch(apiControllerProvider);
+
     return
     Card(
               elevation: 6,
@@ -30,7 +37,7 @@ class PersonTile extends StatelessWidget {
                       width: 20.0,
                     ),
                     Text(
-                      name,
+                      '${member.surName} ${member.name}',
                       style: const TextStyle(fontSize: 24),
                     ),
                     const Spacer(),
@@ -39,7 +46,8 @@ class PersonTile extends StatelessWidget {
                       width: 20.0,
                     ),
                     IconButton(
-                        onPressed: () {
+                        onPressed: () async{
+                          await apiController.postDataToApi(member);
                         },
                         icon: const Icon(Icons.start_outlined, size: 32,)),
                   ],

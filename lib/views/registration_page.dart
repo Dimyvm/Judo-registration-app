@@ -38,7 +38,7 @@ class RegistrationPage extends ConsumerWidget {
           itemCount: memberList.length,
           itemBuilder: (BuildContext context, int index) {
             return 
-            PersonTile(heightMinAppbar: heightMinAppbar, name: '${memberList[index].surName}', isRegistered: false,);
+            PersonTile(heightMinAppbar: heightMinAppbar, member: memberList[index], isRegistered: false,);
    
           },
         ),

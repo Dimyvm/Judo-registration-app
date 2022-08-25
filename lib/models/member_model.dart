@@ -7,7 +7,7 @@ final String group;
 
 const Member({required this.surName, required this.name, required this.birthDate, required this.group});
 
-factory Member.fromJson(Map<String, dynamic> json) {
+  factory Member.fromJson(Map<String, dynamic> json) {
     return Member(
       surName: json['Voornaam'] as String,
       name: json['Achternaam'] as String,
@@ -15,5 +15,13 @@ factory Member.fromJson(Map<String, dynamic> json) {
       group: json['Groep'] as String,
     );
   }
+
+   Map<String, dynamic> toJson() => {
+      
+        'surName': surName,
+        'name': name,
+        'birthDate': birthDate.toString(),
+        'group': group,
+  };
 
 }

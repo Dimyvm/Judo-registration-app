@@ -10,5 +10,10 @@ class Registration{
 
   Registration({required this.registrationDateTime, required this.trainingEvent, required this.member});
 
-
+  Map<String, dynamic> toJson() => {
+      
+        'registrationDateTime': registrationDateTime.toString(),
+        'trainingEvent': trainingEvent.toJson(),
+        'member': member.toJson(),
+  };
 }
