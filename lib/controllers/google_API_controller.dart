@@ -75,14 +75,18 @@ class ApiController extends ChangeNotifier{
     TrainingEvent trainingEvent = getActiveTraining();
     Registration registration = Registration(member: member,registrationDateTime: registrationDateTime, trainingEvent: trainingEvent);
     try {
-      debugPrint('Registration: ${registration.toJson()}');
-      var response = await http.post(apiUrl, body: registration.toJson() );
+      debugPrint('send request');
+      // debugPrint('Registration: ${registration.toJson()}');
+      var response = await http.post(apiUrl,headers: {"Content-Type": "application/json"}, body: registration.toJson() );
+      debugPrint('${response.statusCode}');
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 302) {
         //Registration was succesful
+        debugPrint('Post Succes');
       }
       else{
         //Registration is not succesful
+        debugPrint('Post was NO Succes');
 
       }
 
