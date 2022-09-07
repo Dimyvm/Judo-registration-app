@@ -29,7 +29,7 @@ class TrainingEvent {
       dateTimeEnd: dateTimeEnd,
     );
   }
-  Map<String, dynamic> toJson() => {
+  Map toJson() => {
       
         'group': group,
         'detail': detail,

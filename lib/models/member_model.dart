@@ -16,7 +16,7 @@ const Member({required this.surName, required this.name, required this.birthDate
     );
   }
 
-   Map<String, dynamic> toJson() => {
+   Map toJson() => {
       
         'surName': surName,
         'name': name,

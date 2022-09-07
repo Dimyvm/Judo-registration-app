@@ -47,7 +47,21 @@ class PersonTile extends ConsumerWidget {
                     ),
                     IconButton(
                         onPressed: () async{
-                          await apiController.postDataToApi(member);
+                          bool registered =  await apiController.postDataToApi(member);
+                          if(registered){
+                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                              backgroundColor: Colors.lightGreen,
+                              content: Text("Registered"),
+                            ));
+                            Navigator.pop(context);
+                          }
+                          else{
+                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                              backgroundColor: Colors.redAccent,
+                              content: Text("Plaese try again and check your internet connection"),
+                            ));
+                            Navigator.pop(context);
+                          }
                         },
                         icon: const Icon(Icons.start_outlined, size: 32,)),
                   ],

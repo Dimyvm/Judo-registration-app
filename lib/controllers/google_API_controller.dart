@@ -1,4 +1,6 @@
 
+import 'dart:convert';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -70,28 +72,24 @@ class ApiController extends ChangeNotifier{
   }
 
   // register members training
-  postDataToApi(Member member) async {
+  Future<bool> postDataToApi(Member member) async {
     DateTime registrationDateTime = DateTime.now();
     TrainingEvent trainingEvent = getActiveTraining();
     Registration registration = Registration(member: member,registrationDateTime: registrationDateTime, trainingEvent: trainingEvent);
     try {
-      debugPrint('send request');
-      // debugPrint('Registration: ${registration.toJson()}');
-      var response = await http.post(apiUrl,headers: {"Content-Type": "application/json"}, body: registration.toJson() );
+      
+      var response = await http.post(apiUrl, body: jsonEncode(registration.toJson()));
+      
       debugPrint('${response.statusCode}');
 
       if (response.statusCode == 302) {
-        //Registration was succesful
-        debugPrint('Post Succes');
+        return true;
       }
       else{
-        //Registration is not succesful
-        debugPrint('Post was NO Succes');
-
+        return false;
       }
-
     } catch (e) {
-      // debugPrint('Post Request failed with status: ${response.statusCode}.');
+      return false;
     }
   }
 }
