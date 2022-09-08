@@ -77,15 +77,21 @@ class ApiController extends ChangeNotifier{
     TrainingEvent trainingEvent = getActiveTraining();
     Registration registration = Registration(member: member,registrationDateTime: registrationDateTime, trainingEvent: trainingEvent);
     try {
-      
       var response = await http.post(apiUrl, body: jsonEncode(registration.toJson()));
-      
-      debugPrint('${response.statusCode}');
-
+      debugPrint(response.statusCode.toString());
       if (response.statusCode == 302) {
+
+        // convert response in JSON format
+        var jsonResponse = convert.jsonEncode(response.body);
+
+        debugPrint(jsonResponse.toString());
         return true;
       }
       else{
+        // convert response in JSON format
+        var jsonResponse = convert.jsonEncode(response.body);
+
+        debugPrint(jsonResponse.toString());
         return false;
       }
     } catch (e) {

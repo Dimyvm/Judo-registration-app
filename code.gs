@@ -33,33 +33,29 @@ function doGet(request){
   }
   data["Leden"] = ledenList;
 
-
-  console.log(data);
   return ContentService.createTextOutput(JSON.stringify(data)).setMimeType(ContentService.MimeType.JSON);
 }
 
 function doPost(request){
+  
   // Open Google Sheet using ID
-  var sheet = SpreadsheetApp.openById("1-VzMg51790mnkf07VkXG1WBMu5oFLgBvFLhKAP2eWh8").getSheetByName('Aanwezigheden');
+  var Aanwezigheden = SpreadsheetApp.openById("1-VzMg51790mnkf07VkXG1WBMu5oFLgBvFLhKAP2eWh8").getSheetByName('Aanwezigheden');
   var result = {"status": "SUCCESS"};
-  try{
-    // Get all Parameters
-    var voornaam = request.parameter.voornaam;
-    var achternaam = request.parameter.achternaam;
-    var leeftijd = request.parameter.leeftijd;
-    var datum = request.parameter.datum;
+    try{
+      const params = JSON.parse(request.postData.contents);
 
-    // Append data on Google Sheet
-    var rowData = sheet.appendRow([voornaam, achternaam, leeftijd, datum]);
+      // // Get all Parameters 
+      var registrationDate = params.registrationDateTime;
+      var registrationTime = params.trainingEvent;
 
-  }catch(exc){
-    // If error occurs, throw exception
-    result = {"status": "FAILED", "message": exc};
-  }
+      // // Append data on Google Sheet
+      var rowData = Aanwezigheden.appendRow([registrationDate,registrationTime]);
+      
+    }catch(exc){
+      // If error occurs, throw exception
+      result = {"status": "FAILED", "message": exc};
+    }
 
-  // Return result
-  return ContentService
-  .createTextOutput(JSON.stringify(result))
-  .setMimeType(ContentService.MimeType.JSON);
+    // Return result
+    return ContentService.createTextOutput(JSON.stringify(result)).setMimeType(ContentService.MimeType.JSON);
 }
-

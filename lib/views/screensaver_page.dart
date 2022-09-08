@@ -35,19 +35,12 @@ class _ScreensaverPageState extends State<ScreensaverPage> {
 
   @override
   Widget build(BuildContext context) {
-    // VideoPlayerController _controller;
-    // Future<void> _initializeVideoPlayerFuture;
-    // _controller =
-    //     VideoPlayerController.asset('assets/video/screensaver Judo Tielt.mp4');
-    // _initializeVideoPlayerFuture = _controller.initialize();
-    // _controller.setLooping(true);
-    // _controller.setVolume(0.0);
-    // _controller.play();
 
     return Scaffold(
       backgroundColor: Colors.white,
       body: GestureDetector(
         onTap: () {
+          _controller.dispose();
           Navigator.pushNamed(context, Routes.pageHome);
         },
         child: Center(
