@@ -8,13 +8,12 @@ import 'package:judoregistration/routes.dart';
 import 'package:judoregistration/views/home_page.dart';
 import 'package:judoregistration/views/settings_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wakelock/wakelock.dart';
 
 import 'controllers/google_api_controller.dart';
 import 'controllers/settings_controller.dart';
 
 // TO DO:
-// make post request for trainingsregistration
-// Add package wakelock 0.6.2
 // Add testing
 
 
@@ -28,6 +27,7 @@ class MyHttpOverrides extends HttpOverrides{
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  Wakelock.enable();
   HttpOverrides.global = MyHttpOverrides();
   await SettingsController.init();
 
