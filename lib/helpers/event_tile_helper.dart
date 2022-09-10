@@ -30,7 +30,7 @@ MaterialColor getColor(TrainingEvent trainingEvent){
   if(trainingEvent.group == "Recreanten"){
     return Colors.orange;
   }
-  if(trainingEvent.group == ">=U15"){
+  if(trainingEvent.group == "U15"){
     return Colors.purple;
   }
   if(trainingEvent.group == "U9"){

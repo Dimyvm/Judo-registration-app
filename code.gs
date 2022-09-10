@@ -42,14 +42,24 @@ function doPost(request){
   var Aanwezigheden = SpreadsheetApp.openById("1-VzMg51790mnkf07VkXG1WBMu5oFLgBvFLhKAP2eWh8").getSheetByName('Aanwezigheden');
   var result = {"status": "SUCCESS"};
     try{
+      // convert the event data to a JSON object
       const params = JSON.parse(request.postData.contents);
 
-      // // Get all Parameters 
-      var registrationDate = params.registrationDateTime;
-      var registrationTime = params.trainingEvent;
+      // Get all Parameters 
+      var registrationDate = params.registrationDateTime.split(' ')[0]; //Date 
+      var registrationTime = params.registrationDateTime.split(' ')[1].substring(0, 8); //Time
+      var group = params.trainingEvent.group;
+      var detail = params.trainingEvent.detail;
+      var uurStart = params.trainingEvent.dateTimeStart.split(' ')[1].substring(0, 8);
+      var uurEinde = params.trainingEvent.dateTimeEnd.split(' ')[1].substring(0, 8);
+      var datumStart = params.trainingEvent.dateTimeStart.split(' ')[0];
+      var datumEinde = params.trainingEvent.dateTimeEnd.split(' ')[0];
+      var voornaam = params.member.surName;
+      var achternaam = params.member.name;
 
-      // // Append data on Google Sheet
-      var rowData = Aanwezigheden.appendRow([registrationDate,registrationTime]);
+
+      // Append data on Google Sheet
+      var rowData = Aanwezigheden.appendRow([registrationDate,registrationTime ,group, detail, uurStart, uurEinde, datumStart, datumEinde, voornaam, achternaam  ]);
       
     }catch(exc){
       // If error occurs, throw exception
@@ -58,4 +68,6 @@ function doPost(request){
 
     // Return result
     return ContentService.createTextOutput(JSON.stringify(result)).setMimeType(ContentService.MimeType.JSON);
+    
 }
+
